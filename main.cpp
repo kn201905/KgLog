@@ -2,21 +2,21 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "KgLog.h"
+#include "./src/KgLog.h"
 
 #include <unistd.h>  // sleep のため
 
 
-static KgLog  s_glog{4000, 200, "log_g", 2000, 500};
+static KgLog  s_glog{10 * 1000, 200, "log_g", 2000, 500};
 
 int main(void)
 {
 	char  str_buf[100];
 
-	for (int i = 1; i <= 200; i++)
+	for (int i = 1; i <= 500; i++)
 	{
 		sprintf(str_buf, "書き込みテスト - %d", i);
-		s_glog.Write(str_buf);
+		s_glog.WriteTxt_with_HrTime(str_buf);
 	}
 
 	sleep(1);
